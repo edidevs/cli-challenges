@@ -186,12 +186,7 @@ prog
         randomChar += alphabetList[Math.round( Math.random()* (alphabetList.length-1) ) ];   
          
 
-        for(let i = 0; i<options.length; ++i ){
-            randomChar += alphabetList[Math.round( Math.random()* (alphabetList.length-1) ) ];   
-             
-    
-    
-        }
+        
     }
 
 
