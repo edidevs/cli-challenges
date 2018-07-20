@@ -182,7 +182,7 @@ prog
     let alphabetList = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; 
     
    if(options.length){
-    for(let i = 0; i<options.length; --i ){
+    for(let i = 0; i<options.length; i++ ){
         randomChar += alphabetList[Math.round( Math.random()* (alphabetList.length-1) ) ];   
          
 
