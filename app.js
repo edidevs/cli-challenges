@@ -281,7 +281,6 @@ prog
   })
 
 
-    
   .command('ip', 'get the ip address')
   .description('Display the IP Address')
   .action((args, options, logger) => {
@@ -303,6 +302,71 @@ prog
       let ipAddrExternal = os.networkInterfaces(os); 
 
       console.log(ipAddrExternal.wlp3s0[0].address); 
+
+
+  })
+
+  .command('headlines', 'get the headlines')
+  .description('Display the headline from websites')
+  .action((args, options, logger) => {
+
+      //get modules 
+      
+      let request = require('request');
+      let cheerio = require('cheerio'); 
+      let fs = require('fs'); 
+
+      //prepare to reverse those strings 
+      function reverseString(str){
+            return str.split('').reverse().join(''); 
+
+
+
+
+      }; 
+
+      //grab the url of a website 
+      request("https://www.kompas.com/", 
+                  function(error, response, body){
+                        //display error messages 
+                        if(error){
+
+                              console.log(`Error : ${error}`); 
+
+                        }
+                        //display the status code 
+                        console.log(`Status Code : ${response.statusCode} `); 
+
+                        //load the website 
+                        let q = cheerio.load(body);
+                       
+                        
+                        q("div.headline").each(function(index){
+                              let title = q(this).find(".headline__big__item .headline__big__title").text().trim(); 
+                              console.log(title);
+                              let url = q(this).find(".headline__big__item .headline__big__link").attr("href");
+                              //display the result 
+                              console.log(url);
+                              
+                        }); 
+
+                        
+
+
+
+
+
+
+
+                  }); 
+
+
+
+
+
+
+
+
 
 
   })
