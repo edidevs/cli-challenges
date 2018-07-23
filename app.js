@@ -158,7 +158,7 @@ prog
 
   })
 
-   .command('obfuscate', 'input value')
+  .command('obfuscator', 'input value')
   .argument('str', "array")
   .action((args, options, logger) => {
         
@@ -167,7 +167,7 @@ prog
       for (var i = args.str.length-1; i >= 0; i--) {
           bytes.unshift(['&#', args.str[i].charCodeAt(), ';' ].join(''));
          
-          
+
 
           
       }
@@ -180,7 +180,6 @@ prog
 
 
   })
-
 
   .command('random', 'input value')
   .option('--length <length>' ,'the number', prog.INT)
@@ -282,15 +281,42 @@ prog
   })
 
 
-  
-
-  .command('ip', 'get the ip address')
+  .command('obfuscate', 'obfuscate the code')
   .argument('str', 'the string')
   .action((args, options, logger) => {
 
-      
+     
+      var bytes = [];
+      for (var i = 0; i < args.str.length; i++) {
+          bytes.push(args.str.charCodeAt(i));
+      }
+      console.log(bytes.join(''));
 
 
+  })
+
+  
+  .command('ip', 'get the ip address')
+  .description('Display the IP Address')
+  .action((args, options, logger) => {
+
+      let os = require("os"); 
+       
+      let ipaddr = os.networkInterfaces(os);
+      console.log(ipaddr.lo[0].address); 
+
+
+  })
+
+  .command('ip-external', 'get the external ip')
+  .description('Display an external IP')
+  .action((args, options, logger) => {
+
+      let os = require("os");
+
+      let ipAddrExternal = os.networkInterfaces(os); 
+
+      console.log(ipAddrExternal.wlp3s0[0].address); 
 
 
   })
