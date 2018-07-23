@@ -158,7 +158,7 @@ prog
 
   })
 
-   .command('obfuscator', 'input value')
+   .command('obfuscate', 'input value')
   .argument('str', "array")
   .action((args, options, logger) => {
         
@@ -282,19 +282,7 @@ prog
   })
 
 
-  .command('obfuscate', 'obfuscate the code')
-  .argument('str', 'the string')
-  .action((args, options, logger) => {
-
-     
-      var bytes = [];
-      for (var i = 0; i < args.str.length; i++) {
-          bytes.push(args.str.charCodeAt(i));
-      }
-      console.log(bytes.join(''));
-
-
-  })
+  
 
   .command('ip', 'get the ip address')
   .argument('str', 'the string')
