@@ -162,6 +162,13 @@ prog
   .argument('str', "array")
   .action((args, options, logger) => {
         
+  
+      var bytes = [];
+      for (var i = 0; i < args.str.length; i++) {
+          bytes.push(args.str.charCodeAt(i));
+      }
+      console.log(bytes.join(''));
+
 
         
 
