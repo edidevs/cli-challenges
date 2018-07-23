@@ -1,9 +1,6 @@
 /*
-
 app.js 
 cli-challenges using caporal 
-
-
 */ 
 
 const prog = require('caporal');
@@ -176,14 +173,35 @@ prog
 
   .command('random', 'input value')
   .option('--length <length>' ,'the number', prog.INT)
+  .option('--letters <letter>', 'the boolean value')
+  .option('--numbers <numbers"', 'the number')
+  .option('--uppercase', 'the uppercase')
+  .option('--lowercase', 'the lower')
   .action((args, options, logger) => {
 
     let randomChar = ""; 
     let alphabetList = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; 
     
-   if(options.length){
+   if(options.length && options.numbers && options.lowercase){
+            if(options.numbers==="false"){
+
+                  let newRandom = "abcdefghijklmnopqrstuvwxyz";
+                  for(let i = 0; i<options.length; i++ ){
+                        randomChar += newRandom.charAt(Math.floor(Math.random()* newRandom.length));    
+                           
+                  
+                          
+                  }
+
+            }
+         
+           
+
+
+      
+   }else if(options.length){
     for(let i = 0; i<options.length; i++ ){
-        randomChar += alphabetList[Math.round( Math.random()* (alphabetList.length-1) ) ];   
+      randomChar += alphabetList.charAt(Math.floor(Math.random()* alphabetList.length));    
          
 
         
@@ -191,6 +209,52 @@ prog
 
 
 
+   }else if(options.letters){
+         if(options.letters === "false"){
+
+
+
+            let randomNumber="0123456789";
+            for(let i = 32; i>0; --i ){
+                  randomChar += randomNumber[Math.round( Math.random()* (randomNumber.length-1) ) ];   
+                   
+          
+          
+            }
+       
+
+
+         }
+      
+      
+   }else if(options.numbers){
+           if(options.numbers==="false"){
+              
+                  let randomLetters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                  for(let i = 32; i>0; --i ){
+                        randomChar += randomLetters[Math.round( Math.random()* (randomLetters.length-1) ) ];   
+                         
+                
+                
+                  }
+
+
+
+
+           } 
+      
+      
+   }else if(options.uppercase){
+         let upperLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+         for(let i = 32; i>0; --i ){
+            randomChar += upperLetters[Math.round( Math.random()* (upperLetters.length-1) ) ];   
+             
+    
+    
+      }
+      
+      
+      
    }else{
       for(let i = 32; i>0; --i ){
             randomChar += alphabetList[Math.round( Math.random()* (alphabetList.length-1) ) ];   
@@ -206,5 +270,30 @@ prog
 
   })
 
-prog.parse(process.argv);
 
+  .command('obfuscate', 'obfuscate the code')
+  .argument('str', 'the string')
+  .action((args, options, logger) => {
+
+     
+      var bytes = [];
+      for (var i = 0; i < args.str.length; i++) {
+          bytes.push(args.str.charCodeAt(i));
+      }
+      console.log(bytes.join(''));
+
+
+  })
+
+  .command('ip', 'get the ip address')
+  .argument('str', 'the string')
+  .action((args, options, logger) => {
+
+      
+
+
+
+
+  })
+
+prog.parse(process.argv);
