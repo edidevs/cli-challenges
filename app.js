@@ -158,25 +158,29 @@ prog
 
   })
 
-  .command('obfuscator', 'input value')
+   .command('obfuscator', 'input value')
   .argument('str', "array")
   .action((args, options, logger) => {
         
-  
+
       var bytes = [];
-      for (var i = 0; i < args.str.length; i++) {
-          bytes.push(args.str.charCodeAt(i));
+      for (var i = args.str.length-1; i >= 0; i--) {
+          bytes.unshift(['&#', args.str[i].charCodeAt(), ';' ].join(''));
+         
+          
+
+          
       }
-      console.log(bytes.join(''));
 
-
-        
+      console.log(bytes.join());
+     
 
         
 
 
 
   })
+
 
   .command('random', 'input value')
   .option('--length <length>' ,'the number', prog.INT)
