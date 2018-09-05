@@ -4,7 +4,7 @@ cli-challenges using caporal
 */ 
 
 const prog = require('caporal');
-const express = require('express');
+const helmet = require('helmet');
 prog
   .version('1.0.0')
 
